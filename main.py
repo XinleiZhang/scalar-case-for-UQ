@@ -39,6 +39,9 @@ x = x0
 beta = np.zeros(Nen)
 converge_flag = 'False'
 
+if not os.path.exists('./postprocessing'):
+    os.mkdir('./postprocessing')
+
 if not os.path.exists('./postprocessing/'+casename):
     os.mkdir('./postprocessing/'+casename)
 
