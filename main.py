@@ -14,7 +14,7 @@ def forwardmodel(X, q):
 # user-defined variables
 
 casename = 'E4_EnRML_iter30'
-ensemblemethod= 'EnRML' #'EnKF_MDA' 'EnKF'
+ensemblemethod= 'EnRML' #'EnRML' EnKF_MDA' 'EnKF'
 
 r = 0.5 # step parameter for EnRML
 
@@ -53,14 +53,13 @@ for iter in range(maxiter):
         analysismatrix = analysis.EnKF(x, y, obs,Cdd,Nen)
         dx = analysismatrix*(obs-y)
         x = x + dx
-        #pdb.set_trace()
         if abs(np.mean(dx)) < cri: converge_flag = 'True'
     
-    elif ensemblemethod== 'EnKF_MDA':
+    elif ensemblemethod== 'EnKFMDA':
         alpha = maxiter
         pertObs = np.random.normal(0., sigmad, Nen)
         obs =1.+ np.sqrt(alpha)* pertObs
-        analysismatrix = analysis.EnKF_MDA(x, y, obs,Cdd,Nen,alpha)
+        analysismatrix = analysis.EnKF_MDA(x, y, obs, Cdd, Nen, alpha)
         dx = analysismatrix*(obs-y)
         x = x + dx
         if abs(np.mean(dx)) < cri: converge_flag = 'True'
@@ -73,7 +72,6 @@ for iter in range(maxiter):
         if abs(np.mean(dx)) < cri: converge_flag = 'True'
 
     if converge_flag=='True':
-        #pdb.set_trace()
         print ('reach convergence condition at iteration', iter )
         break
     if iter == (maxiter-1): print ('reach max iteration')

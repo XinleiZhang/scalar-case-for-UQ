@@ -27,7 +27,7 @@ params = {
 mpl.rcParams.update(params)
 
 # define which case to plot
-ensemblemethod = 'EnRML' #'EnRML' EnKF_MDA' 'EnKF'
+ensemblemethod = 'EnKFMDA' #'EnRML' EnKF_MDA' 'EnKF'
 res = 'posterior' #'prior'or 'posterior'
 casefolder = 'E4_'+ensemblemethod+'_iter30'
 
